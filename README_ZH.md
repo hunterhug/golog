@@ -32,7 +32,7 @@ go get -v -u github.com/hunterhug/golog
 
 ### 例子1：默认用法
 
-```
+```go
 package main
 
 import . "github.com/hunterhug/golog"
@@ -88,7 +88,7 @@ func main() {
 
 最重要的是，您可以输出日志到文件中，文件还支持按日志级别输出到不同的文件中，且支持文件切割，文件自动清理等。
 
-```
+```go
 package main
 
 import (
@@ -140,7 +140,7 @@ func main() {
 
 学习这个库非常简单，看看下面的接口方法。
 
-```
+```go
 type LoggerInterface interface {
 	SetOutputFile(logPath, fileName string)
 	SetFileRotate(fileMaxAge, fileRotation time.Duration)

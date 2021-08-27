@@ -24,7 +24,7 @@ default logger is InfoLevel, and has long func caller.
 
 ### Demo1
 
-```
+```go
 package main
 
 import . "github.com/hunterhug/golog"
@@ -80,7 +80,7 @@ Output:
 
 you can config log to file and auto rotate.
 
-```
+```go
 package main
 
 import (
@@ -132,7 +132,7 @@ Output is in the file dir `·/log`, due to `SetIsOutputStdout` is true it also o
 
 very easy to understand.
 
-```
+```go
 type LoggerInterface interface {
 	SetOutputFile(logPath, fileName string)
 	SetFileRotate(fileMaxAge, fileRotation time.Duration)
