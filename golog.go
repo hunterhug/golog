@@ -33,6 +33,7 @@ type logger struct {
 var _log = New()
 
 func init() {
+	// skip is 2, we wrap 2 layer
 	_log.SetCallerSkip(2)
 	_log.InitLogger()
 }
@@ -180,6 +181,8 @@ func (l *logger) InitLogger() {
 	}
 
 	op1 := zap.AddCaller()
+
+	// we wrap 1 layer
 	op2 := zap.AddCallerSkip(1)
 
 	if l.skip > 0 {
