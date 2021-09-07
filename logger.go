@@ -2,6 +2,7 @@ package golog
 
 import (
 	"context"
+	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"strings"
 	"time"
@@ -90,4 +91,7 @@ type LoggerInterface interface {
 	DebugContextWithFields(ctx context.Context, fields map[string]interface{}, template string, args ...interface{})
 
 	AddFieldFunc(func(context.Context, map[string]interface{}))
+
+	GetZapLogger() *zap.Logger
+	GetZapSugaredLogger() *zap.SugaredLogger
 }

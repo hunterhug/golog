@@ -13,8 +13,8 @@ import (
 )
 
 type logger struct {
-	name string
-
+	name         string
+	zapLogger    *zap.Logger
 	sugarLog     *zap.SugaredLogger
 	level        Level
 	short        bool
@@ -190,8 +190,8 @@ func (l *logger) InitLogger() {
 	}
 
 	zapLogger := zap.New(outCore, op1, op2)
-
 	sugarLogger := zapLogger.Sugar()
+	l.zapLogger = zapLogger
 	l.sugarLog = sugarLogger
 }
 
@@ -742,4 +742,20 @@ func (l *logger) PanicContext(ctx context.Context, template string, args ...inte
 
 func PanicContext(ctx context.Context, template string, args ...interface{}) {
 	_log.PanicContext(ctx, template, args...)
+}
+
+func (l *logger) GetZapLogger() *zap.Logger {
+	return l.zapLogger
+}
+
+func GetZapLogger() *zap.Logger {
+	return _log.GetZapLogger()
+}
+
+func GetZapSugaredLogger() *zap.SugaredLogger {
+	return _log.GetZapSugaredLogger()
+}
+
+func (l *logger) GetZapSugaredLogger() *zap.SugaredLogger {
+	return l.sugarLog
 }

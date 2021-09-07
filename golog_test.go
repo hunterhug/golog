@@ -7,7 +7,6 @@ import (
 	"time"
 )
 
-
 func TestNew(t *testing.T) {
 	SetLevel(InfoLevel)
 	SetCallerShort(true)
