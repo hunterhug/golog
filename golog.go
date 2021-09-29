@@ -190,6 +190,9 @@ func (l *logger) InitLogger() {
 	}
 
 	zapLogger := zap.New(outCore, op1, op2)
+	if l.name != "" {
+		zapLogger = zapLogger.Named(l.name)
+	}
 	sugarLogger := zapLogger.Sugar()
 	l.zapLogger = zapLogger
 	l.sugarLog = sugarLogger
@@ -573,8 +576,7 @@ func (l *logger) AddFieldFunc(f func(context.Context, map[string]interface{})) {
 }
 
 func (l *logger) addField(ctx context.Context, fields map[string]interface{}) {
-	fields["service.log.name"] = l.name
-
+	//fields["service.log.name"] = l.name
 	//fields["service.log.time"] = time.Now().String()
 
 	if l.addFieldFunc != nil {

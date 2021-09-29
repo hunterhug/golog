@@ -52,7 +52,9 @@ type LoggerInterface interface {
 	GetCallerSkip() (skip int)
 	GetOutputJson() bool
 
+	// InitLogger init logger should call this when change config
 	InitLogger()
+	// Sync terminal the logger should call this to flush
 	Sync() error
 
 	Panicf(template string, args ...interface{})
@@ -90,6 +92,7 @@ type LoggerInterface interface {
 	InfoContextWithFields(ctx context.Context, fields map[string]interface{}, template string, args ...interface{})
 	DebugContextWithFields(ctx context.Context, fields map[string]interface{}, template string, args ...interface{})
 
+	// AddFieldFunc filter deal the fields
 	AddFieldFunc(func(context.Context, map[string]interface{}))
 
 	GetZapLogger() *zap.Logger
